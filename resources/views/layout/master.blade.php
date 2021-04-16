@@ -44,7 +44,11 @@
         <div id="loading-area"></div>
 
         <!-- header -->
-        @include('layout.header')
+        @if(Route::is('home') )
+            @include('layout.headerHome')
+        @else
+            @include('layout.header')
+        @endif
         <!-- header END -->
 
         <!-- Content -->
