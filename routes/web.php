@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/posts/{id}', [HomeController::class, 'detail']);
+Route::get('/posts/{id}', [HomeController::class, 'detail'])->name('post_detail');
 
 
 Route::group(['prefix' => 'admin'], function () {

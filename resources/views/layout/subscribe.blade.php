@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center subscribe-design">
             <div class="col-lg-7 col-md-7 d-none d-md-block">
-                <img src="{{url('assets/images/stand1.png')}}" alt=""/>
+                <img src="{{url('storage/'. setting('site.home_stand_pic'))}}" alt=""/>
             </div>
             <div class="col-lg-5 col-md-5">
                 <form class="dzSubscribe dezPlaceAni" action="script/mailchamp.php" method="post">

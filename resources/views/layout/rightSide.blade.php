@@ -14,7 +14,7 @@
                 </div>
             </form>
         </div>
-        <div class="widget widget_gallery gallery-grid-2">
+        {{-- <div class="widget widget_gallery gallery-grid-2">
             <h6 class="widget-title"><span>Instagram</span></h6>
             <ul>
                 <li>
@@ -46,7 +46,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         <div class="widget widget-social">
             <h6 class="widget-title"><span>Social</span></h6>
             <ul>
@@ -66,20 +66,20 @@
                 </div>
             </div>
         </div>
+
+        <!-- LATEST POST -->
         <div class="widget widget-stories">
             <h6 class="widget-title"><span>Latest Post</span></h6>
             <div class="post-carousel owl-carousel owl-theme owl-none owl-btn-3">
-                <div class="item">
-                    <img src="{{url('assets/images/d1.jpg')}}" alt=""/>
-                </div>
-                <div class="item">
-                    <img src="{{url('assets/images/d2.jpg')}}" alt=""/>
-                </div>
-                <div class="item">
-                    <img src="{{url('assets/images/d3.jpg')}}" alt=""/>
-                </div>
+                @foreach ($latestPosts as $item)
+                    <div class="item">
+                        <img src="{{url('storage/'. $item->image)}}" alt=""/>
+                    </div>
+                @endforeach
             </div>
         </div>
+        <!-- END LATEST POST -->
+
         <div class="widget widget_tag_cloud">
             <h6 class="widget-title"><span>Tags</span></h6>
             <div class="tagcloud text-center">

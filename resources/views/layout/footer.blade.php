@@ -4,63 +4,35 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-2 col-md-6 d-md-none d-lg-block">
                     <div class="widget">
-                        <img src="{{url('assets/images/name_logo_white.png')}}" alt=""/>
+                        <img src="{{url('storage/'. setting('site.white_logo'))}}" alt=""/>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <h6 class="m-b30 footer-title"><span>Recent Post</span></h6>
                     <div class="widget recent-posts-entry">
-                        <div class="widget-post-bx">
-                            <div class="widget-post clearfix">
-                                <div class="dlab-post-media"> <img src="{{url('assets/images/d1.jpg')}}" alt=""> </div>
-                                <div class="dlab-post-info">
-                                    <div class="dlab-post-header">
-                                        <h6 class="post-title"><a href="post-quote.html">Winter Fairytale</a></h6>
-                                    </div>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-date">25 January, 2020</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-post-bx">
-                            <div class="widget-post clearfix">
-                                <div class="dlab-post-media"> <img src="{{url('assets/images/d2.jpg')}}" alt=""> </div>
-                                <div class="dlab-post-info">
-                                    <div class="dlab-post-header">
-                                        <h6 class="post-title"><a href="post-link.html">Fruit & Flamingos</a></h6>
-                                    </div>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-date">25 January, 2020</li>
-                                        </ul>
+                        @foreach ($latestPosts as $item)
+                            <div class="widget-post-bx">
+                                <div class="widget-post clearfix">
+                                    <div class="dlab-post-media"> <img src="{{url('storage/'. $item->image)}}" alt=""> </div>
+                                    <div class="dlab-post-info">
+                                        <div class="dlab-post-header">
+                                            <h6 class="post-title"><a href="post-quote.html">{{$item->title}}</a></h6>
+                                        </div>
+                                        <div class="dlab-post-meta">
+                                            <ul>
+                                                <li class="post-date">{{date('d M, Y', strtotime($item->action_date))}}</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="widget-post-bx">
-                            <div class="widget-post clearfix">
-                                <div class="dlab-post-media"> <img src="{{url('assets/images/d3.jpg')}}" alt=""> </div>
-                                <div class="dlab-post-info">
-                                    <div class="dlab-post-header">
-                                        <h6 class="post-title"><a href="post-gallery.html">Hawai Beaches</a></h6>
-                                    </div>
-                                    <div class="dlab-post-meta">
-                                        <ul>
-                                            <li class="post-date">25 January, 2020</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6">
                     <h6 class="m-b30 footer-title"><span>My Blogs</span></h6>
-                    <a class="video widget relative popup-youtube overlay-black-middle" href="https://www.youtube.com/watch?v=VjlATH_rzYg">
-                        <img src="{{url('assets/images/d4.jpg')}}" alt=""/>
+                    <a class="video widget relative popup-youtube overlay-black-middle" href="{{setting('site.home_blog_youtube_link')}}">
+                        <img src="{{url('storage/'. setting('site.home_blog_image'))}}" alt=""/>
                         <span class="play-video"><i class="la la-play"></i></span>
                     </a>
                 </div>
@@ -80,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <span>Copyright © 2020 DexignZone.</span>
+                    <span>Copyright © 2021 PANG-SORAM-DEPO</span>
                 </div>
             </div>
         </div>

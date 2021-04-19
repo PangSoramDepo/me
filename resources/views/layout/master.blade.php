@@ -14,11 +14,11 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON -->
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+	{{-- <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" /> --}}
 
 	<!-- PAGE TITLE HERE -->
-	<title>LeMars : Blog HTML Template</title>
+	<title>{{setting('site.title')}}</title>
 
 	<!-- MOBILE SPECIFIC -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,8 +62,7 @@
         <button class="scroltop fa fa-chevron-up" ></button>
     </div>
 
-    <!-- JAVASCRIPT FILES ========================================= -->
-    <script src="{{url('assets/js/combining.js')}}"></script><!-- CONTACT JS  -->
+    <script src="{{url('assets/js/combining.js')}}"></script>
 
 </body>
 </html>
