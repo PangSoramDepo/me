@@ -44,7 +44,7 @@ class HomeController extends Controller
         // PREPARATION QUERY
         $categories = Category::all();
         $latestPost = Post::where('is_portrait',0)->orderBy('action_date', 'DESC')->take(3)->get();
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $prev = Post::where('action_date', '<=', $post->action_date)->where('id', '<', $post->id)->first();
         $next = Post::where('action_date', '>=', $post->action_date)->where('id', '>', $post->id)->first();
 

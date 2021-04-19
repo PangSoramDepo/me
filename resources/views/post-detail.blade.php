@@ -14,7 +14,7 @@
 							</div>
 							<div class="blog-post blog-single blog-post-style-2 sidebar">
                                 <div class="dlab-post-info">
-                                    {!! $post->body !!}
+                                    {!! str_replace('http://localhost:8000', env('APP_URL'), $post->body) !!}
                                 </div>
 							</div>
 							<div class="">
@@ -37,10 +37,12 @@
 								</div> --}}
 								<div class="post-btn">
                                     @foreach ($relates as $item)
-                                        <div class="@if($loop->iteration == 1) prev-post @else next-post @endif">
-                                            <img src="{{url('storage/'. $item->image)}}" alt=""/>
-                                            <h6 class="title"><a href="{{route('post_detail', $item->id)}}">{{$item->title}}</a><span class="post-date">{{date('d M, Y', strtotime($item->action_date))}}</span></h6>
-                                        </div>
+                                        @if($item)
+                                            <div class="@if($loop->iteration == 1) prev-post @else next-post @endif">
+                                                <img src="{{url('storage/'. $item->image)}}" alt=""/>
+                                                <h6 class="title"><a href="{{route('post_detail', $item->id)}}">{{$item->title}}</a><span class="post-date">{{date('d M, Y', strtotime($item->action_date))}}</span></h6>
+                                            </div>
+                                        @endif
                                     @endforeach
 								</div>
 								{{-- <div class="clear m-b30" id="comment-list">
