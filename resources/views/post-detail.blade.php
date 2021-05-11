@@ -14,6 +14,7 @@
 							</div>
 							<div class="blog-post blog-single blog-post-style-2 sidebar">
                                 <div class="dlab-post-info">
+                                    <img src="{{url('storage/'. $post->image)}}" alt=""/>
                                     {!! str_replace('http://localhost:8000', env('APP_URL'), $post->body) !!}
                                 </div>
 							</div>

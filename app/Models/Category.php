@@ -16,6 +16,6 @@ class Category extends Model
 
     public function latestPost()
     {
-        return $this->posts()->orderBy('action_date','DESC')->first();
+        return $this->posts()->where('status','published')->orderBy('action_date','DESC')->first();
     }
 }

@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/loadmore', [ApiController::class, 'loadmore']);
+Route::get('/loadmore', [ApiController::class, 'loadmore'])->name('loadmore');

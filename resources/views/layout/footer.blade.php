@@ -16,7 +16,7 @@
                                     <div class="dlab-post-media"> <img src="{{url('storage/'. $item->image)}}" alt=""> </div>
                                     <div class="dlab-post-info">
                                         <div class="dlab-post-header">
-                                            <h6 class="post-title"><a href="post-quote.html">{{$item->title}}</a></h6>
+                                            <h6 class="post-title"><a href="{{route('post_detail', $item->id)}}">{{$item->title}}</a></h6>
                                         </div>
                                         <div class="dlab-post-meta">
                                             <ul>

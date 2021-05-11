@@ -64,5 +64,9 @@
 
     <script src="{{url('assets/js/combining.js')}}"></script>
 
+    <!-- Script -->
+    @yield('script')
+    <!-- Script End-->
+
 </body>
 </html>

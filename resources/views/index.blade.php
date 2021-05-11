@@ -111,7 +111,7 @@
                                 <!-- End Portrait Middle-->
 
                                  <!-- Down Post-->
-                                <div class="row" id="masonry">
+                                <div class="row" id="down-post">
                                     @foreach ($post_down as $item)
                                         <div class="col-lg-6 col-md-12 col-sm-6 card-container">
                                             <div class="blog-card post-grid">
@@ -130,13 +130,17 @@
                                 </div>
                                 <!-- End Down Post-->
 
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="load-more-btn text-center">
-                                            <a href="javascript:;" class="btn outline outline-2 black radius-xl">Load More</a>
+                                @if($isLoadMore)
+                                    <div class="row" id="readmore">
+                                        <div class="col-12">
+                                            <div class="load-more-btn-we text-center">
+                                                <a class="btn outline outline-2 black radius-xl">Load More</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="" id="loader"></div>
+                                @endif
+
                             </div>
 
                         </div>
@@ -154,4 +158,29 @@
         </div>
         <!-- contact area END -->
     </div>
+@endsection
+
+@section('script')
+    <script>
+        var page = 1;
+        $("#readmore").click(function() {
+            var link="{{route('loadmore')}}" + "?page=" + page + "&exclude=" + "{{$excludeIds}}";
+            document.getElementById('readmore').className="depo-hide";
+            document.getElementById('loader').className="loader";
+            $.ajax({
+                url:link,
+                method:"GET",
+                data:{},
+                success:function(data){
+                    console.log(data);
+                    page++;
+                    const parent = document.getElementById('down-post');
+                    parent.insertAdjacentHTML('beforeend',data.html);
+                    document.getElementById('loader').className="";
+                    if (data.isLoadMore)
+                        document.getElementById('readmore').className="row";
+                }
+            });
+        });
+    </script>
 @endsection
