@@ -1,0 +1,36 @@
+stages:
+  - build
+  - deploy
+
+build:
+  image: docker:20.10.16
+  stage: build
+  services:
+    - docker:20.10.16-dind
+  script:
+    - echo "Building Docker image..."
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build --platform linux/arm64 -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+
+deploy:
+  image: alpine:latest
+  stage: deploy
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config;
+    - cat "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - cat "$SSH_PUBLIC_KEY" | tr -d '\r' > ~/.ssh/id_rsa.pub
+    - chmod 600 ~/.ssh/id_rsa;
+    - chmod 764 ~/.ssh/id_rsa.pub;
+    - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+  script:
+    - echo "Deploying the application to the server..."
+    - ssh $SERVER_USER@$SERVER_IP "
+      docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
+      docker stop $CI_PROJECT_NAME || docker rm $CI_PROJECT_NAME || true &&
+      docker run --name $CI_PROJECT_NAME --network=nginxproxymanager_default -d -p $PORT:80 -v /data/pangsoramdepo/storage:/var/www/html/storage $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"
+      

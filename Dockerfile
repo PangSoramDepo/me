@@ -23,15 +23,16 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy the Laravel project files to the container
 COPY . .
+COPY .env.example .env
 
 # Set permissions for Laravel directories
 RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Install PHP dependencies
-RUN composer install
+RUN composer install --no-scripts --ignore-platform-reqs
 
 # Generate Laravel application key
-RUN php artisan key:generate
+# RUN php artisan key:generate
 
 # Expose port 80 for Apache
 EXPOSE 80
