@@ -85,7 +85,7 @@
                             <!-- End Middle Post -->
 
                             <!-- Portrait Middle-->
-                            <div class="section-head text-center">
+                            {{-- <div class="section-head text-center">
                                 <div class="title-sm"><a href="javascript:void(0);">{{$portrait_middle->category->name}}</a></div>
                                 <h2 class="title-head"><a href="{{route('post_detail', $portrait_middle->id)}}">{{$portrait_middle->title}}</a></h2>
                             </div>
@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Portrait Middle-->
 
                                  <!-- Down Post-->
